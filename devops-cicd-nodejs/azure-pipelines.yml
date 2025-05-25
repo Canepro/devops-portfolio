@@ -1,0 +1,24 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+
+- script: |
+    npm install
+  displayName: 'Install dependencies'
+
+- script: |
+    npm test
+  displayName: 'Run tests'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '<Your Azure Service Connection>'
+    appName: '<Your App Service Name>'
+    package: '.'

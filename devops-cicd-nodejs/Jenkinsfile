@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Install') {
+            steps {
+                bat 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'npm test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Add Azure CLI deployment steps here
+            }
+        }
+    }
+}
